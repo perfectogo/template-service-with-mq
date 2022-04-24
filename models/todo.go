@@ -29,8 +29,8 @@ type CrUpTodo struct {
 }
 
 type RespTodoList struct {
-	Todos RespTodo `json:"todos"`
-	Count int64    `json:"count"`
+	Todos *[]RespTodo `json:"todos"`
+	Count int64       `json:"count"`
 }
 
 type ReqById struct {
@@ -40,4 +40,13 @@ type ReqById struct {
 type ReqList struct {
 	Limit int64 `json:"limit"`
 	Page  int64 `json:"page"`
+}
+
+type TodoQueryParamModel struct {
+	Search      string `json:"search"`
+	BranchID    string `json:"branch_id"`
+	Order       string `json:"order" enums:"id,name,region_id,address,location,vehicle_number,vehicle_model,branch_id,phone,created_at, updated_at"`
+	Arrangement string `json:"arrangement" enums:"asc,desc"`
+	Offset      int    `json:"offset" default:"0"`
+	Limit       int    `json:"limit" default:"10"`
 }

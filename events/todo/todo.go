@@ -32,4 +32,20 @@ func (e *todoEvent) RegisterConsumers() {
 		"v1.todo.create", // routingKey
 		e.InsertTodoListener,
 	)
+
+	e.rmq.AddConsumer(
+		"v1.todo.update", // consumerName
+		"v1.todo",        // exchangeName
+		"v1.todo.update", // queueName
+		"v1.todo.update", // routingKey
+		e.UpdateTodoListener,
+	)
+
+	e.rmq.AddConsumer(
+		"v1.todo.delete", // consumerName
+		"v1.todo",        // exchangeName
+		"v1.todo.delete", // queueName
+		"v1.todo.delete", // routingKey
+		e.DeleteTodoListener,
+	)
 }

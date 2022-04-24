@@ -6,5 +6,6 @@ import (
 )
 
 func endpointsV1(r *gin.RouterGroup, h *v1.Handler) {
-	r.GET("/todo/:id", h.GetTodo)
+	r.GET("/todos", h.GetTodoList)
+	r.GET("/todos/:id", h.GetTodo)
 }
